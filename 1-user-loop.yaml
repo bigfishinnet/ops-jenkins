@@ -1,0 +1,22 @@
+---
+- hosts: all
+  tasks: 
+    - name: create user
+      user:
+        name: "{{item}}"
+        state: present
+        generate_ssh_key: false
+      loop:
+        - joe
+        - bill
+        - geoff
+- hosts: all
+  tasks:
+    - name: install software
+      yum:
+        name: "{{item}}"
+        state: present
+      loop:
+        - socat
+        - htop
+        - nmap

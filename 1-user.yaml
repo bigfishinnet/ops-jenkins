@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks: 
+    - name: create user
+      user:
+        name: stephen
+        state: present
+    - name: create user
+      user:
+        name: joe
+        state: present
+- hosts: all
+  tasks:
+    - name: install apache
+      yum:
+        name: httpd
+        state: present
+    - name: remove htop
+      yum:
+        name: htop
+        state: absent

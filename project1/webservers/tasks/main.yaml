@@ -1,0 +1,11 @@
+---
+    - name: install software
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start httpd Service | Enable on Boot
+      service:
+        name: httpd
+        state: started
+        enabled: yes

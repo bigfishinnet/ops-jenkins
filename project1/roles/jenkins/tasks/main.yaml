@@ -1,0 +1,28 @@
+---
+# Action to get repo a key from a url
+  - name: Schedule a command to wget the Jenkins repo and import.
+    shell: wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+# Action to import a key from a url
+  - name: Install Jenkins Repo
+    rpm_key:
+      state: present
+      key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+#---
+#- name: Add repository
+#  yum_repository:
+#    name: jenkins
+#    description: Jenkins yum repo
+#    baseurl: https://pkg.jenkins.io/redhat/jenkins.repo
+
+  - name: install Jenkins
+    yum:
+      name: jenkins
+      state: present
+      update_cache: yes
+      
+  - name: Start Jenkins Service | Enable on Boot
+    service:
+     name: jenkins
+     state: started
+     enabled: yes

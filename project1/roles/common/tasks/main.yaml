@@ -1,0 +1,22 @@
+---
+  - name: create user
+    user:
+      name: "{{item.name}}"
+      state: "{{item.state}}"
+      generate_ssh_key: "{{item.generate_ssh_key}}"
+    loop:
+      - name: alice
+        state: present
+        generate_ssh_key: false
+      - name: bob
+        state: present
+        generate_ssh_key: false
+      - name: teresa
+        state: present
+        generate_ssh_key: true
+      - name: montgomery
+        state: present
+        generate_ssh_key: true
+      - name: piyush
+        state: present
+        generate_ssh_key: true

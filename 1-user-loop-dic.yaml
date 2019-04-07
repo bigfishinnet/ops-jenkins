@@ -1,0 +1,32 @@
+---
+- hosts: all
+  tasks: 
+    - name: create user
+      user:
+        name: "{{item.name}}"
+        state: "{{item.state}}"
+        generate_ssh_key: "{{item.generate_ssh_key}}"
+      loop:
+        - name: joe
+          state: present
+          generate_ssh_key: true
+        - name: bill
+          state: present
+          generate_ssh_key: true 
+        - name: geoff
+          state: present
+          generate_ssh_key: false
+
+- hosts: all
+  tasks:
+    - name: install software
+      yum:
+        name: "{{item.package}}"
+        state: "{{item.installed}}"
+      loop:
+        - package: httpd
+          installed: present
+        - package: htop
+          installed: present
+        - package: socat
+          installed: present

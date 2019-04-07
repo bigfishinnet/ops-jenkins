@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+  - common
+
+- hosts: jslave
+  roles:
+    - webservers
+
+- hosts: jmaster
+  roles:
+    - jenkins
